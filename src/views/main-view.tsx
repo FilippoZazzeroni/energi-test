@@ -1,6 +1,6 @@
 import { Card, Grid } from "@mui/material";
 import { Component, ReactNode } from "react";
-import { ApiConnectorETH } from "../models/api-connector-ethlib";
+import { ApiConnectorETH } from "../models/api-connector";
 import "../views/main-view.css"
 import energi from "../assets/images/energi.png"
 

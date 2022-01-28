@@ -1,22 +1,31 @@
+import { providers } from "ethers"
+import { ethers } from "ethers"
+import { url } from "inspector"
 import Web3 from "web3"
 import { Eth } from "web3-eth"
 
-require
+export class ApiConnectorETH {
 
-export class ApiConnector {
+    private constructor() { }
 
-    private constructor() {
-        this.intialize()
+    static instance = new ApiConnectorETH()
+
+    private provider = new ethers.providers.JsonRpcProvider("https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161")
+
+    public async getLatestTransactionData() {
+        const blockNumber = await this.provider.getBlockNumber()
+        const blockTransaction = await this.provider.getBlockWithTransactions(blockNumber)
+        const transactionsCount = blockTransaction.transactions.length
+        const miner = blockTransaction.miner
+        console.log(miner)
+        const totalDifficulty = blockTransaction.difficulty
+
+        return {
+            "blockNumber": blockNumber,
+            "transactionsCount": transactionsCount,
+            "miner": miner,
+            "totalDifficulty": totalDifficulty,
+            "transactions": blockTransaction.transactions
+        }
     }
-
-    static instance = new ApiConnector()
-
-    private intialize() {
-        console.log("initializing the api")
-        const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
-        const eth = new Eth(Eth.givenProvider || "ws://some.local-or-remote.node:8546")
-        web3.eth.getAccounts()
-    }
-
-
 }
