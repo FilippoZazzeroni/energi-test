@@ -6,7 +6,7 @@ body {
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
 }
 
-h1, h2 {
+h1, h2, h3, h5 {
     color: white;
 }
 
@@ -23,7 +23,7 @@ h1, h2 {
     margin-bottom: auto;
 }
 
-#title {
+#title  {
     
     text-shadow: 0px 0px 10px #69E382;
     font-size: 40px;
@@ -76,6 +76,16 @@ h1, h2 {
 }
 
 /*! MARK: classes */
+
+.title {
+    text-shadow: 0px 0px 10px #69E382;
+    font-size: 30px;
+}
+
+.subtitle {
+    text-shadow: 0px 0px 10px #ff4500;
+    font-size: 30px;
+}
 
 .row {
     display: flex;

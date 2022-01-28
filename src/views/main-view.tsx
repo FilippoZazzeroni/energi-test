@@ -29,22 +29,24 @@ export class MainView extends Component {
                         </div>
                         <div id="page-body">
                             <Grid container spacing={12}>
-                                <Grid item xs={6}>
+                                <Grid item xs={7}>
+                                    <h1 className="title">Last transaction important data</h1>
                                     {this.lastTransactionData.map((value, index, array) => {
                                         return (
                                             <>
+                                                <h2 className="subtitle">{value.value}</h2>
                                                 <h2>{value.title}</h2>
-                                                <h2>{value.value}</h2>
                                             </>
                                         )
                                     })}
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={4}>
+                                    <h1 className="title">Sorted recent transactions values</h1>
                                     {this.transactionsHistoryData.map((value, index, array) => {
                                         return (
                                             <>
-                                                <h2>{value.title}</h2>
-                                                <h2>{value.value}</h2>
+                                                <h2 className="subtitle">{value.value}</h2>
+                                                <h5>{value.title}</h5>
                                             </>
                                         )
                                     })}
@@ -65,9 +67,9 @@ export class MainView extends Component {
         this.lastTransactionData.push(new TransactionData("Total difficulty", data.totalDifficulty.toString()))
         this.lastTransactionData.push(new TransactionData("Number of transactions", data.transactionsCount.toString()))
         transactionsHistory.forEach((transaction) => {
-            this.transactionsHistoryData.push(new TransactionData("transaction.hash", transaction.value.toString()))
+            this.transactionsHistoryData.push(new TransactionData(transaction.from, transaction.value.toString()))
         })
-        this.transactionsHistoryData.sort((value1, value2) => 1)
+        this.transactionsHistoryData = this.transactionsHistoryData.sort((value1, value2) => Number(value2.value) - Number(value1.value))
         this.setState({})
     }
 

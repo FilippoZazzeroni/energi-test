@@ -1,6 +1,8 @@
 import { providers } from "ethers"
 import { ethers } from "ethers"
 import { url } from "inspector"
+import Web3 from "web3"
+import { Eth } from "web3-eth"
 
 export class ApiConnectorETH {
 
@@ -15,7 +17,9 @@ export class ApiConnectorETH {
         const blockTransaction = await this.provider.getBlockWithTransactions(blockNumber)
         const transactionsCount = blockTransaction.transactions.length
         const miner = blockTransaction.miner
+        console.log(miner)
         const totalDifficulty = blockTransaction.difficulty
+
         return {
             "blockNumber": blockNumber,
             "transactionsCount": transactionsCount,
